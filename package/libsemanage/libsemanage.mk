@@ -5,6 +5,7 @@
 ################################################################################
 
 LIBSEMANAGE_VERSION = 3.2
+#LIBSEMANAGE_VERSION = 3.3-rc2
 LIBSEMANAGE_SITE = https://github.com/SELinuxProject/selinux/releases/download/$(LIBSEMANAGE_VERSION)
 LIBSEMANAGE_LICENSE = LGPL-2.1+
 LIBSEMANAGE_LICENSE_FILES = COPYING
@@ -24,6 +25,7 @@ endef
 
 define LIBSEMANAGE_INSTALL_TARGET_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) $(LIBSEMANAGE_MAKE_OPTS) DESTDIR=$(TARGET_DIR) install
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) $(LIBSEMANAGE_MAKE_OPTS) DESTDIR=$(TARGET_DIR) install-pywrap
 endef
 
 HOST_LIBSEMANAGE_DEPENDENCIES = \

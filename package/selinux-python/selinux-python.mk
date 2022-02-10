@@ -5,6 +5,7 @@
 ################################################################################
 
 SELINUX_PYTHON_VERSION = 3.2
+#SELINUX_PYTHON_VERSION = 3.3-rc2
 SELINUX_PYTHON_SITE = https://github.com/SELinuxProject/selinux/releases/download/$(SELINUX_PYTHON_VERSION)
 SELINUX_PYTHON_LICENSE = GPL-2.0
 SELINUX_PYTHON_LICENSE_FILES = COPYING
@@ -24,6 +25,8 @@ endif
 ifeq ($(BR2_PACKAGE_SELINUX_PYTHON_SEPOLGEN),y)
 SELINUX_PYTHON_MAKE_DIRS += sepolgen/src/sepolgen
 endif
+SELINUX_PYTHON_MAKE_DIRS += semanage
+SELINUX_PYTHON_MAKE_DIRS += sepolicy
 
 define SELINUX_PYTHON_BUILD_CMDS
 	$(foreach d,$(SELINUX_PYTHON_MAKE_DIRS),
