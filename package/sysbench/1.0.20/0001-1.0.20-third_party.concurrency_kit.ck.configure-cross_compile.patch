@@ -1,0 +1,31 @@
+diff --git a/third_party/concurrency_kit/ck/configure b/third_party/concurrency_kit/ck/configure
+index 9d2fe83..e6e97f1 100755
+--- a/third_party/concurrency_kit/ck/configure
++++ b/third_party/concurrency_kit/ck/configure
+@@ -611,11 +611,13 @@ COMPILER=`./.1 2> /dev/null`
+ r=$?
+ rm -f .1.c .1
+ 
++: <<'END'
+ if test "$r" -ne 0; then
+ 	assert "" "update compiler"
+ else
+ 	echo "success [$CC]"
+ fi
++END
+ 
+ if test "$COMPILER" = "suncc"; then
+ 	LD=/bin/ld
+@@ -655,7 +657,11 @@ elif test "$COMPILER" = "gcc" || test "$COMPILER" = "clang" || test "$COMPILER"
+ 		PLATFORM=x86_64
+ 	fi
+ else
+-	assert "" "unknown compiler"
++      # assert "" "unknown compiler >>>>>>"
++        ALL_LIBS="libck.so libck.a"
++	INSTALL_LIBS="install-lib"
++        CFLAGS="-D_XOPEN_SOURCE=600 -D_BSD_SOURCE -D_DEFAULT_SOURCE -std=gnu99 -pedantic -Wall -W -Wundef -Wendif-labels -Wshadow -Wpointer-arith -Wcast-align -Wcast-qual -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -Winline -Wdisabled-optimization -fstrict-aliasing -O2 -pipe -Wno-parentheses $CFLAGS"
++	PTHREAD_CFLAGS="-pthread"
+ fi
+ 
+ printf "Detecting VMA bits..............."

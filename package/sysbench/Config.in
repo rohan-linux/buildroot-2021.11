@@ -1,0 +1,44 @@
+config BR2_PACKAGE_SYSBENCH
+	bool "sysbench"
+	help
+          sysbench is a scriptable multi-threaded benchmark tool. 
+          It is most frequently used for database benchmarks, but can also be 
+          used to create arbitrarily complex workloads that do not involve a 
+          database server.
+
+          https://github.com/akopytov/sysbench
+
+if BR2_PACKAGE_SYSBENCH
+choice
+        prompt "Choose sysbench version"
+        default BR2_PACKAGE_SYSBENCH_0_4_12
+        help
+        Choose which sysbench version you want.
+
+config BR2_PACKAGE_SYSBENCH_0_4_12
+        bool "0.4.12"
+        help
+        Choose 0.4.12
+        https://launchpad.net/ubuntu/+archive/primary/+files/sysbench_0.4.12.orig.tar.gz
+
+config BR2_PACKAGE_SYSBENCH_0_4
+        bool "0.4"
+        help
+        Choose branch 0.4
+        https://github.com/akopytov/sysbench      
+
+config BR2_PACKAGE_SYSBENCH_0_5
+        bool "0.5"
+        help
+        Choose branch 0.5
+        https://github.com/akopytov/sysbench
+
+config BR2_PACKAGE_SYSBENCH_1_0_20
+        bool "1.0.20"
+        select BR2_PACKAGE_LUAJIT
+        help
+        Choose branch 1.0.20. required LuaJIT
+        https://github.com/akopytov/sysbench
+
+endchoice
+endif
