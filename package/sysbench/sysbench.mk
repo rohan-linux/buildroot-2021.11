@@ -4,7 +4,6 @@
 #
 ################################################################################
 
-SYSBENCH_CFLAGS = $(TARGET_CFLAGS)
 
 ifeq ($(BR2_PACKAGE_SYSBENCH_0_4_12),y)
 SYSBENCH_VERSION = 0.4.12
@@ -15,8 +14,6 @@ define SYSBENCH_CONFIUGRE_AC
 	touch $(@D)/NEWS $(@D)/AUTHORS
 endef
 SYSBENCH_PRE_CONFIGURE_HOOKS += SYSBENCH_CONFIUGRE_AC
-SYSBENCH_AUTORECONF = YES
-SYSBENCH_AUTORECONF_OPTS = -fi
 else 
 ifeq ($(BR2_PACKAGE_SYSBENCH_0_4),y)
 SYSBENCH_VERSION = 0.4
@@ -30,14 +27,15 @@ SYSBENCH_MAKE_ENV += \
 endif
 SYSBENCH_SITE = https://github.com/akopytov/sysbench
 SYSBENCH_SITE_METHOD = git
-SYSBENCH_AUTORECONF = YES
-SYSBENCH_AUTORECONF_OPTS = -fi
-endif
 
 ifeq ($(BR2_COMPILER_PARANOID_UNSAFE_PATH),y)
 $(error BR2_COMPILER_PARANOID_UNSAFE_PATH must be disabled)
 endif
+endif
 
+SYSBENCH_CFLAGS = $(TARGET_CFLAGS)
+SYSBENCH_AUTORECONF = YES
+SYSBENCH_AUTORECONF_OPTS = -fi
 SYSBENCH_CONF_OPTS = --without-mysql
 
 $(eval $(autotools-package))
