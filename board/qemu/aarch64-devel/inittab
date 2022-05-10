@@ -29,7 +29,7 @@ null::sysinit:/bin/ln -sf /proc/self/fd/2 /dev/stderr
 
 # Put a getty on the serial port
 #ttyAMA0::respawn:/sbin/getty -L  ttyAMA0 0 vt100 # GENERIC_SERIAL
-#::askfirst:-/bin/sh    # auto login and press key 
+#::askfirst:-/bin/sh            # auto login and press key 
 ::respawn:-/bin/sh              # auto login and no key  
 
 # Stuff to do for the 3-finger salute
