@@ -14,7 +14,7 @@ define SYSBENCH_CONFIUGRE_AC
 	touch $(@D)/NEWS $(@D)/AUTHORS
 endef
 SYSBENCH_PRE_CONFIGURE_HOOKS += SYSBENCH_CONFIUGRE_AC
-else 
+else
 ifeq ($(BR2_PACKAGE_SYSBENCH_0_4),y)
 SYSBENCH_VERSION = 0.4
 else ifeq ($(BR2_PACKAGE_SYSBENCH_0_5),y)
@@ -28,8 +28,10 @@ endif
 SYSBENCH_SITE = https://github.com/akopytov/sysbench
 SYSBENCH_SITE_METHOD = git
 
+ifeq ($(BR2_PACKAGE_SYSBENCH),y)
 ifeq ($(BR2_COMPILER_PARANOID_UNSAFE_PATH),y)
 $(error BR2_COMPILER_PARANOID_UNSAFE_PATH must be disabled)
+endif
 endif
 endif
 
